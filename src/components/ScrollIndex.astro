@@ -1,0 +1,78 @@
+---
+interface Item { id: string; label: string; }
+const { items = [] } = Astro.props;
+---
+<nav id="scroll-index" class="scroll-index mx-auto max-w-md mt-6 mb-8" aria-label="Índice de secciones" data-items={JSON.stringify(items)}>
+  <ol class="flex gap-3 w-full justify-center flex-col items-start text-white/70 ">
+    {items.map((item) => (
+      <li class="group">
+        <a href={`#${item.id}`} data-id={item.id} class="index-dot block">
+          <span class="label text-sm flex items-center gap-2">
+            <div class="line"></div>
+            {item.label}
+          </span>
+        </a>
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  @keyframes lineExpand {
+    from { width: 2rem; }
+    to { width: 4rem; }
+  }
+  @keyframes lineShrink {
+    from { width: 4rem; }
+    to { width: 2rem; }
+  }
+  .scroll-index { pointer-events: auto; }
+  .index-dot { display: flex; flex-direction: column; align-items: center; transition: all 200ms; }
+  .index-dot .label {  transition: opacity 200ms, color 200ms; display: flex; align-items: center; gap: 0.5rem; }
+  .index-dot .line { width: 2rem; height: 2px; transition: width 300ms ease, background-color 200ms; background-color: rgba(255, 255, 255, 0.7); transform-origin: left; }
+  .index-dot.active .label { opacity: 1; color: #fff; font-weight: 600; }
+  .index-dot.active .line { animation: lineExpand 300ms ease forwards; background-color: #fff; }
+  .index-dot:not(.active) .line { animation: lineShrink 300ms ease forwards; }
+  .index-dot:hover .label { opacity: 1; color: #fff }
+  .index-dot:hover .line { animation: lineExpand 300ms ease forwards; background-color: #fff; }
+</style>
+
+<script>
+  const el = document.getElementById('scroll-index');
+  const items = JSON.parse(el?.dataset.items || '[]');
+
+  const links = new Map(items.map(i => [i.id, el.querySelector(`a[data-id="${i.id}"]`)]));
+
+  function setActive(id) {
+    links.forEach((a, key) => {
+      if (!a) return;
+      a.classList.toggle('active', key === id);
+    });
+  }
+
+  el.addEventListener('click', (e) => {
+    const target = e.target.closest('a[data-id]');
+    if (!target) return;
+    e.preventDefault();
+    const id = target.dataset.id;
+    const section = document.getElementById(id);
+    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setActive(entry.target.id);
+      }
+    });
+  }, { rootMargin: '0px 0px -55% 0px', threshold: 0.25 });
+
+  items.forEach(i => {
+    const section = document.getElementById(i.id);
+    if (section) observer.observe(section);
+  });
+
+  if (items.length) {
+    setActive(items[0].id);
+  }
+</script>
