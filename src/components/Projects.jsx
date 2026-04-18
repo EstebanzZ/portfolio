@@ -1,6 +1,6 @@
 import luPic from "../assets/LU-Pic.png"
 import aquaPic from "../assets/aqua-PIC.png"
-import react from "../assets/tech/react.svg"
+import react from "../assets/tech/React.svg"
 import node from "../assets/tech/node-js.png"
 import tailwind from "../assets/tech/tailwind.png"
 import Reveal from "./Reveal"
