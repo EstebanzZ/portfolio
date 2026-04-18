@@ -12,7 +12,7 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const links = ["Sobre mí", "Habilidades", "Proyectos", "Certificaciones", "Contacto"]
+  const links = ["Sobre mí", "Proyectos", "Contacto"]
 
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -20,8 +20,8 @@ function Navbar() {
     }`}>
       <div className="max-w-5xl mx-auto px-6 flex justify-between items-center">
         
-        <a href="#hero" className="text-xl font-bold text-gray-800">
-          Esteban<span className="text-blue-600">.</span>
+        <a href="#hero" className="text-2xl font-bold text-titles">
+          Esteban<span className="text-primary">.</span>
         </a>
 
         {/* Links escritorio */}
@@ -31,7 +31,7 @@ function Navbar() {
               <a
               
                 href={`#${link.toLowerCase().replace(" ", "-")}`}
-                className="text-gray-600 hover:text-blue-600 transition-colors duration-200 text-sm font-medium"
+                className="text-titles hover:text-blue-600 transition-colors duration-200 text-sm font-medium"
               >
                 {link}
               </a>
@@ -41,7 +41,7 @@ function Navbar() {
 
         {/* Botón menú móvil */}
         <button
-          className="md:hidden text-gray-700"
+          className="md:hidden text-titles"
           onClick={() => setMenuAbierto(!menuAbierto)}
         >
           {menuAbierto ? "✕" : "☰"}
@@ -56,7 +56,7 @@ function Navbar() {
               <li key={link}>
                 <a
                   href={`#${link.toLowerCase().replace(" ", "-")}`}
-                  className="text-gray-600 hover:text-blue-600 text-sm font-medium"
+                  className="text-titles hover:text-blue-600 text-sm font-medium"
                   onClick={() => setMenuAbierto(false)}
                 >
                   {link}

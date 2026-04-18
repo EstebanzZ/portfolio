@@ -1,107 +1,95 @@
-function Contact() {
-  return (
-    <section id="contacto" className="py-24 px-6 bg-gray-50">
-      <div className="max-w-5xl mx-auto">
+import Reveal from "./Reveal"
 
-        {/* Título */}
-        <div className="mb-12">
-          <p className="text-blue-600 text-sm font-medium tracking-widest uppercase mb-2">
-            Hablemos
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+function Contact() {
+  const handleSubmit = (event) => {
+    event.preventDefault()
+
+    const formData = new FormData(event.currentTarget)
+    const name = formData.get("name")?.toString().trim() || ""
+    const email = formData.get("email")?.toString().trim() || ""
+    const message = formData.get("message")?.toString().trim() || ""
+
+    const subject = encodeURIComponent(`Contacto portfolio - ${name}`)
+    const body = encodeURIComponent(
+      `Nombre: ${name}\nEmail: ${email}\n\nDescripción:\n${message}`,
+    )
+
+    window.location.href = `mailto:estebanmrojas13@gmail.com?subject=${subject}&body=${body}`
+  }
+
+  return (
+    <Reveal as="section" id="contacto" className="bg-white px-4 py-18 sm:px-6">
+      <div className="mx-auto max-w-6xl">
+
+        <Reveal className="mb-12">
+          <h2 className="mt-3 text-3xl font-bold text-titles md:text-4xl">
             Contacto
           </h2>
-        </div>
+          <p className="mt-4 max-w-2xl text-text-body">
+            Estoy en búsqueda de prácticas profesionales. Si tienes una oportunidad o
+            quieres conversar sobre un proyecto, me encantará leerte.
+          </p>
+        </Reveal>
 
-        <div className="flex flex-col md:flex-row gap-12">
+        <Reveal
+          className="mx-auto max-w-3xl rounded-4xl border border-divisor bg-[linear-gradient(180deg,rgba(204,238,238,0.52)_0%,rgba(255,255,255,1)_100%)] p-6 shadow-[0_18px_40px_rgba(17,24,39,0.08)] sm:p-8"
+          delay={0.05}
+        >
+          <form className="space-y-5" onSubmit={handleSubmit}>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label htmlFor="name" className="mb-1 block text-sm font-medium text-titles">
+                  Nombre
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  className="w-full rounded-xl border border-divisor bg-white px-4 py-3 text-sm text-titles outline-none transition focus:border-primary"
+                  placeholder="Tu nombre"
+                />
+              </div>
 
-          {/* Texto izquierda */}
-          <div className="flex-1">
-            <p className="text-gray-600 text-lg leading-relaxed mb-8">
-              Estoy buscando oportunidades de prácticas profesionales. 
-              Si tienes un proyecto interesante o quieres hablar, 
-              no dudes en escribirme.
-            </p>
-
-            {/* Links de contacto */}
-            <div className="flex flex-col gap-4">
-              {[
-                {
-                  label: "Email",
-                  value: "estebanmrojas13@gmail.com",
-                  href: "mailto:estebanmrojas13@gmail.com",
-                },
-                {
-                  label: "LinkedIn",
-                  value: "linkedin.com/in/estebanmarta",
-                  href: "https://linkedin.com/in/estebanmarta",
-                },
-                {
-                  label: "GitHub",
-                  value: "github.com/estebanzz",
-                  href: "https://github.com/estebanzz",
-                },
-              ].map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  target="_blank"
-                  className="flex items-center gap-4 group"
-                >
-                  <span className="text-gray-400 text-sm w-20 font-medium">
-                    {item.label}
-                  </span>
-                  <span className="text-gray-700 text-sm font-medium group-hover:text-blue-600 transition-colors duration-200">
-                    {item.value}
-                  </span>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Card derecha */}
-          <div className="md:w-80 bg-white rounded-xl p-8 shadow-sm border border-gray-100 flex flex-col gap-6 h-fit">
-            <div>
-              <p className="text-gray-400 text-xs font-medium uppercase tracking-widest mb-1">
-                Estado actual
-              </p>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                <p className="text-gray-700 font-semibold text-sm">
-                  Disponible para prácticas
-                </p>
+              <div>
+                <label htmlFor="email" className="mb-1 block text-sm font-medium text-titles">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  className="w-full rounded-xl border border-divisor bg-white px-4 py-3 text-sm text-titles outline-none transition focus:border-primary"
+                  placeholder="tuemail@dominio.com"
+                />
               </div>
             </div>
 
             <div>
-              <p className="text-gray-400 text-xs font-medium uppercase tracking-widest mb-1">
-                Ubicación
-              </p>
-              <p className="text-gray-700 font-semibold text-sm">
-                Cali, Colombia
-              </p>
+              <label htmlFor="message" className="mb-1 block text-sm font-medium text-titles">
+                Descripción
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows={6}
+                required
+                className="w-full resize-none rounded-xl border border-divisor bg-white px-4 py-3 text-sm text-titles outline-none transition focus:border-primary"
+                placeholder="Cuéntame sobre tu proyecto u oportunidad"
+              />
             </div>
 
-            <div>
-              <p className="text-gray-400 text-xs font-medium uppercase tracking-widest mb-1">
-                Modalidad
-              </p>
-              <p className="text-gray-700 font-semibold text-sm">
-                Presencial o remoto
-              </p>
-            </div>
-
-            <a
-              href="mailto:estebanmrojas13@gmail.com"
-              className="w-full text-center bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 text-sm"
+            <button
+              type="submit"
+              className="inline-flex w-full items-center justify-center rounded-xl border border-divisor bg-primary px-5 py-3 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/20"
             >
-              Enviar mensaje
-            </a>
-          </div>
-
-        </div>
+              Enviar correo
+            </button>
+          </form>
+        </Reveal>
       </div>
-    </section>
+    </Reveal>
   )
 }
 
