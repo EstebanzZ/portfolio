@@ -18,10 +18,10 @@ function About() {
           {/* Texto */}
           <div className="flex-1">
             <p className="text-text-body text-lg leading-relaxed mb-6">
-              Soy estudiante de Tecnología en Desarrollo de Sistemas en la USC Cali, próximo a iniciar prácticas. 
-              Además de construir  aplicaciones fullstack, me apasiona el tema de las redes, la infraestructura 
-              y estar en constante aprendizaje, lo que me ha llevado a certificarme en ciberseguridad y cloud mientras 
-              curso mi carrera.
+              ¡Hola! Soy estudiante de Tecnología en Desarrollo de Software en la USC y estoy listo para iniciar 
+              mis prácticas profesionales. Me apasiona construir soluciones tecnológicas completas, combinando el desarrollo de 
+              aplicaciones con el manejo de datos e infraestructura Cloud. Disfruto enfrentando retos técnicos, optimizando 
+              sistemas y aprendiendo constantemente para adaptarme a las necesidades del entorno y del negocio.
             </p>
           </div >
         </Reveal>

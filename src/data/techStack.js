@@ -8,6 +8,8 @@ import vercelLogo from "../assets/tech/vercel.svg"
 import pythonLogo from "../assets/tech/python.svg"
 import postgresqlLogo from "../assets/tech/postgresql.svg"
 import mysqlLogo from "../assets/tech/mysql.svg"
+import javaLogo from "../assets/tech/java.png"
+import springbootLogo from "../assets/tech/springboot.png"
 
 export const techStack = [
   {
@@ -78,6 +80,20 @@ export const techStack = [
     name: "MySQL",
     icon: mysqlLogo,
     description: "Gestión de datos estructurados para aplicaciones web.",
+    glow: "radial-gradient(circle, rgba(0, 117, 143, 0.43) 0%, rgba(0, 117, 143, 0) 72%)",
+  },
+  {
+    id: "java",
+    name: "Java",
+    icon: javaLogo,
+    description: "Desarrollo de aplicaciones robustas y escalables.",
+    glow: "radial-gradient(circle, rgba(0, 117, 143, 0.43) 0%, rgba(0, 117, 143, 0) 72%)",
+  },
+  {
+    id: "springboot",
+    name: "Spring Boot",
+    icon: springbootLogo,
+    description: "Framework para crear APIs y aplicaciones empresariales.",
     glow: "radial-gradient(circle, rgba(0, 117, 143, 0.43) 0%, rgba(0, 117, 143, 0) 72%)",
   },
 ]
