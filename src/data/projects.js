@@ -18,5 +18,15 @@ export const projects = [
     github: "https://github.com/LilCharchar/Aqua",
     demo: null,
     status: "completado"
+  },
+    {
+    id: 3,
+    title: "SPC",
+    description: "Aplicacion para gestionar citas medicas.",
+    role: "Frontend Developer",
+    techs: ["React", "JavaScript", "Figma", "REST APIs"],
+    github: "https://github.com/LilCharchar/Aqua",
+    demo: null,
+    status: "completado"
   }
 ]
